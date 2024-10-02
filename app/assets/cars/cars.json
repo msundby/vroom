@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "make": "Ford",
+        "model": "Mustang GT",
+        "year": 2024,
+        "price": 95.00,
+        "available": true
+    },
+    {
+        "id": 1,
+        "make": "Toyota",
+        "model": "Camry",
+        "year": 2020,
+        "price": 24000,
+        "available": true
+    },
+    {
+        "id": 2,
+        "make": "Honda",
+        "model": "Accord",
+        "year": 2019,
+        "price": 22000,
+        "available": false
+    },
+    {
+        "id": 3,
+        "make": "Chevrolet",
+        "model": "Camaro",
+        "year": 2021,
+        "price": 30000,
+        "available": true
+    },
+    {
+        "id": 4,
+        "make": "Dodge",
+        "model": "Challenger",
+        "year": 2022,
+        "price": 35000,
+        "available": true
+    }
+]
