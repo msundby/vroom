@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Image } from 'react-native';
 
@@ -12,17 +12,14 @@ const NavBar: React.FC = () => {
 
     return (
         <View style={styles.navbar}>
-            <TouchableOpacity style={styles.button} >
-                <Image source={require(homeIcon)} width={24} height={24} />
-                <Text>Browse Cars</Text>
+            <TouchableOpacity >
+                <Image source={require(homeIcon)} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} >
-                <Image source={require(bookingsIcon)} width={24} height={24} />
-                <Text>View Bookings</Text>
+            <TouchableOpacity >
+                <Image source={require(bookingsIcon)} style={styles.icon} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button} >
-                <Image source={require(profileIcon)} width={24} height={24} />
-                <Text>Profile</Text>
+            <TouchableOpacity >
+                <Image source={require(profileIcon)} style={styles.icon} />
             </TouchableOpacity>
         </View>
     );
@@ -33,20 +30,19 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: 60,
-        backgroundColor: '#fff',
+        height: 50,
+        backgroundColor: '#2c2c2e',
         borderTopWidth: 1,
         borderTopColor: '#ddd',
         position: 'absolute',
         bottom: 0,
         width: '100%',
     },
-    button: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 10,
-    },
+    icon: {
+        width: 18,
+        height: 18,
+        tintColor: '#b8860b',
+    }
 });
 
 export default NavBar;
