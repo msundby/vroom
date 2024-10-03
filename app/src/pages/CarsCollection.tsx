@@ -60,9 +60,10 @@ export default CarsCollection;
 
 const styles = StyleSheet.create({
     container: {
+        paddingTop: 50,
         flex: 1,
         alignItems: 'center',
-        
+        backgroundColor: '#2c2c2e',
         width: '100%',
         gap: 10,
     }
