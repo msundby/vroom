@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CarCard from '../components/CarCard';
 
@@ -42,7 +42,9 @@ const CarsCollection: React.FC = () => {
         );
     }
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.safeArea}>
+            <ScrollView>
+            <View style={styles.container}>
             {carCollectionArray.length > 0 ? (
                 carCollectionArray.map((car: Car) => (
                     <CarCard
@@ -54,17 +56,23 @@ const CarsCollection: React.FC = () => {
                 <Text>Loading...</Text>
             )}
         </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
 export default CarsCollection;
 
 const styles = StyleSheet.create({
+    safeArea: {
+        paddingTop: StatusBar.currentHeight,
+        backgroundColor: '#2c2c2e',
+    },
     container: {
         flex: 1,
         alignItems: 'center',
-        
         width: '100%',
         gap: 10,
+        paddingTop: 12,
     }
 });

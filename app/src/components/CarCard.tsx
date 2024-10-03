@@ -29,7 +29,7 @@ export default function CarCard(Props: Readonly<CarCardProps>) {
                 <Button title="View Details" onPress={() => {}} />
                 <Button title="Book Now" onPress={() => {}} />
             </View>
-            <Text style={styles.priceText}>Price: {Props.car.price}</Text>
+            <Text style={styles.priceText}>Price: {Props.car.price} $</Text>
         </View>
     </View>
   )
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
         maxWidth: 400,
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: 'white',
-        borderRadius: 10,
+        backgroundColor: '#3a3a3c',
+        borderRadius: 8,
         padding: 10,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     carImage: {
         width: 100,
         height: 100,
-        borderRadius: 3,
+        borderRadius: 8,
         resizeMode: 'stretch',
         marginRight: 10,
     },
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     cardHeading: {
         fontSize: 18,
         fontWeight: 'bold',
+        color: '#b8860b',
     },
     cardSubHeading: {
         fontSize: 14,
@@ -101,5 +102,6 @@ const styles = StyleSheet.create({
         flex: 1,
         textAlign: 'right',
         fontWeight: 'bold',
+        color: 'white',
     }
 })
