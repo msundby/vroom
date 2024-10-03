@@ -1,33 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Car } from '../pages/CarsCollection';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { Car } from '../components/Car';
+import { RouteProp } from '@react-navigation/native';
 
-/*
-const car = {
-    id: '1',
-    make: 'Toyota',
-    model: 'Corolla',
-    year: 2019,
-    price: 20000,
-    image: 'https://www.toyota.com/imgix/responsive/images/mlp/colorizer/2021/corolla/1J9/1.png?q=85&fm=jpg&w=1024&fit=max&cs=strip&bg=fff',
-    description: 'The 2021 Toyota Corolla is a compact sedan that seats five passengers. It is available in five trim levels: L, LE, SE, XLE and XSE. The Corolla is powered by a 1.8-liter four-cylinder engine (139 horsepower, 126 lb-ft of torque) or a 2.0-liter four-cylinder engine (169 hp, 151 lb-ft of torque).', 
-    color: 'Red',
+// Define the pparameter list type for your stack
+type RootStackParamList = {
+    CarInformation: { car: Car };
 };
-*/
+type CarInformationRouteProp = RouteProp<RootStackParamList, 'CarInformation'>;
 
 interface CarInformationProps {
-    car: Car;
-}
+  route: CarInformationRouteProp
+};
 
-const CarInformation: React.FC<CarInformationProps> = ({car}) => {
+const CarInformation: React.FC = () => {
+  const route = useRoute<RouteProp<RootStackParamList, 'CarInformation'>>();
+  const { car } = route.params;
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{car.make} {car.model}</Text>
-            <Text style={styles.label}>Year: {car.year}</Text>
-            <Text style={styles.label}>Price: ${car.price}</Text>
-            <Text style={styles.label}>Description:</Text>
-            <Text>{car.description}</Text>
+          <Text style={styles.title}>Car Information</Text>
+          <Text style={styles.label}>Make: {car.make}</Text>
+          <Text style={styles.label}>Model: {car.model}</Text>
+          <Text style={styles.label}>Year: {car.year}</Text>
+          <Text style={styles.label}>Price: ${car.price}</Text>
+          <Text style={styles.label}>Availability: {car.available ? 'Available' : 'Not Available'}</Text>
+          <Text style={styles.description}>Description: {car.description}</Text>
         </View>
     );
        
@@ -47,6 +45,10 @@ const styles = StyleSheet.create({
     label: {
       fontSize: 18,
       marginBottom: 10,
+    },
+    description: {
+      fontSize: 16,
+      marginTop: 20,
     },
   });
   

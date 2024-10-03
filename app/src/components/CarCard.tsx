@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import { Car } from '../pages/CarsCollection'
+import { Car } from '../components/Car'
 import Button from '../components/Button'
 
 
@@ -10,6 +10,7 @@ interface CarCardProps {
         showAvailability: boolean;
         shinyBorder: boolean;
     }
+    onViewDetails: () => void;
 }
 
 export default function CarCard(Props: Readonly<CarCardProps>) {
@@ -26,7 +27,7 @@ export default function CarCard(Props: Readonly<CarCardProps>) {
         </View>
         <View style={styles.cardFooter}>
             <View style={styles.buttonContainer}>
-                <Button title="View Details" onPress={() => {}} />
+                <Button title="View Details" onPress={Props.onViewDetails} />
                 <Button title="Book Now" onPress={() => {}} />
             </View>
             <Text style={styles.priceText}>Price: {Props.car.price} $</Text>

@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import CarCard from '../components/CarCard';
+import { Car } from '../components/Car';
 
-export interface Car {
-    id: number;
-    make: string;
-    model: string;
-    year: number;
-    price: number;
-    available: boolean;
-    description: string;
-}
-
+type RootStackParamList = {
+    CarInformation: { car: Car };
+};  
+type CarsCollectionNavigationProp = NavigationProp<RootStackParamList, 'CarInformation'>;
 const CarsCollection: React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<CarsCollectionNavigationProp>();
+    const handleViewDetails = (car: Car) => {   
+        navigation.navigate('CarInformation', { car });
+    }
     const [carCollectionArray, setCarCollectionArray] = useState<Car[]>([]);
     const [error, setError] = useState<string | null>(null);
 
@@ -50,7 +48,10 @@ const CarsCollection: React.FC = () => {
                     <CarCard
                     key={car.id} 
                     car={car} 
-                    carCardOptions={{ showPrice: true, showAvailability: true, shinyBorder: true }}  />
+                    carCardOptions={{ showPrice: true, showAvailability: true, shinyBorder: true }}
+                    onViewDetails={() => handleViewDetails(car)}     
+                    />
+                    
                 ))
             ) : (
                 <Text>Loading...</Text>
