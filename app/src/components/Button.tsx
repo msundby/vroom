@@ -8,7 +8,7 @@ interface ButtonProps {
     backgroundColor?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ title, onPress, color = '#fff', backgroundColor = '#007BFF' }) => {
+const Button: React.FC<ButtonProps> = ({ title, onPress, color = '#2c2c2e', backgroundColor = '#b8860b' }) => {
     return (
         <TouchableOpacity style={[styles.button, { backgroundColor }]} onPress={onPress}>
             <Text style={[styles.text, { color }]}>{title}</Text>
@@ -18,9 +18,9 @@ const Button: React.FC<ButtonProps> = ({ title, onPress, color = '#fff', backgro
 
 const styles = StyleSheet.create({
     button: {
-        paddingVertical: 8,
+        paddingVertical: 10,
         paddingHorizontal: 12,
-        borderRadius: 6,
+        borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center',
     },
