@@ -42,7 +42,7 @@ const CarsCollection: React.FC = () => {
     }
     return (
         <SafeAreaView style={styles.safeArea}>
-            <ScrollView>
+            <ScrollView style={styles.scrollContainer}>
             <View style={styles.container}>
             {carCollectionArray.length > 0 ? (
                 carCollectionArray.map((car: Car) => (
@@ -64,8 +64,12 @@ export default CarsCollection;
 
 const styles = StyleSheet.create({
     safeArea: {
+        flex: 1,
         paddingTop: StatusBar.currentHeight,
         backgroundColor: '#2c2c2e',
+    },
+    scrollContainer: {
+        paddingBottom: 58,
     },
     container: {
         flex: 1,
