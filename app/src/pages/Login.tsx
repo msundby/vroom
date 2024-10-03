@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
 
-const LoginComponent = () => {
+const LoginComponent: React.FC = () => {
     return (
       <View style={styles.loginContainer}>
         <View style={styles.loginBox}>
@@ -15,30 +15,16 @@ const LoginComponent = () => {
             secureTextEntry={true}
           />
           <TouchableOpacity style={styles.forgotPassword}>
-            <Text style={styles.forgotPasswordText}>Forgot password</Text>
+            <Text style={styles.loginLink}>Forgot password</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.loginButton}>
             <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
           <View style={styles.signupLink}>
-            <Text>Don't have an account? </Text>
+            <Text style={styles.signupText}>Don't have an account? </Text>
             <TouchableOpacity>
-              <Text style={styles.signupText}>Sign up</Text>
+              <Text style={styles.loginLink}>Sign up</Text>
             </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.footerMenu}>
-          <View style={styles.footerItem}>
-            <Text style={styles.footerIcon}>🚗</Text>
-            <Text>Browse Cars</Text>
-          </View>
-          <View style={styles.footerItem}>
-            <Text style={styles.footerIcon}>📅</Text>
-            <Text>View Bookings</Text>
-          </View>
-          <View style={[styles.footerItem, styles.activeFooterItem]}>
-            <Text style={styles.footerIcon}>⚙️</Text>
-            <Text>Profile</Text>
           </View>
         </View>
       </View>
@@ -52,12 +38,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#808080', // Gray background
+        backgroundColor: '#2c2c2e',
       },
 
       loginBox: {
         alignItems: 'center',
-        backgroundColor: '#ccc', // Lighter gray for input fields
+        backgroundColor: '#2c2c2e', 
         padding: 20,
         borderRadius: 10,
       },
@@ -65,11 +51,13 @@ const styles = StyleSheet.create({
       inputField: {
         width: 300,
         padding: 15,
-        marginVertical: 10, // margin-top and margin-bottom combined
+        marginVertical: 10,
         borderRadius: 5,
-        borderWidth: 0, // React Native doesn't have 'border: none', so use borderWidth: 0
+        borderWidth: 1,
         fontSize: 16,
-        backgroundColor: '#fff', // Add a background color to make input visible
+        backgroundColor: '#3a3a3c',
+        borderColor: '#b8860b',
+        color: 'white'
       },
 
       forgotPassword: {
@@ -77,18 +65,14 @@ const styles = StyleSheet.create({
         marginVertical: 5,
       },
 
-      forgotPasswordText: {
-        color: 'blue',
-      },
-
       loginButton: {
-        backgroundColor: '#ddd', // Slightly darker than inputs
+        backgroundColor: '#b8860b',
         padding: 15,
-        width: '100%', // React Native uses percentage strings
+        width: '100%',
         borderRadius: 5,
         fontSize: 18,
         marginTop: 10,
-        alignItems: 'center', // Center text in the button
+        alignItems: 'center',
       },
 
       loginButtonText: {
@@ -100,32 +84,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
       },
 
+      loginLink: {
+        color: '#b8860b',
+      },
+
       signupText: {
-        color: 'blue',
-      },
-
-      footerMenu: {
-        flexDirection: 'row',
-        position: 'absolute',
-        bottom: 0,
-        backgroundColor: '#d3d3d3', // Light gray
-        width: '100%',
-        justifyContent: 'space-around',
-        padding: 10,
-      },
-
-      footerItem: {
-        flexDirection: 'column',
-        alignItems: 'center',
-        fontSize: 12,
-      },
-
-      footerIcon: {
-        fontSize: 24,
-        marginBottom: 5,
-      },
-
-      activeFooterItem: {
-        color: 'black',
+        color: 'white'
       }
 })
