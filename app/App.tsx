@@ -14,8 +14,9 @@ const App: React.FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="CarsCollection">
-        <Stack.Screen name="CarsCollection" component={Register} options={{ headerShown: false }} />
+        <Stack.Screen name="CarsCollection" component={CarsCollection} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginComponent} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
       </Stack.Navigator>
       <NavBar />
     </NavigationContainer>
