@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     carImage: {
         width: 100,
         height: 100,
-        borderRadius: 3,
+        borderRadius: 8,
         resizeMode: 'stretch',
         marginRight: 10,
     },

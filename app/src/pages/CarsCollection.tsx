@@ -65,13 +65,13 @@ export default CarsCollection;
 const styles = StyleSheet.create({
     safeArea: {
         paddingTop: StatusBar.currentHeight,
+        backgroundColor: '#2c2c2e',
     },
     container: {
-        paddingTop: 50,
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#2c2c2e',
         width: '100%',
         gap: 10,
+        paddingTop: 12,
     }
 });
