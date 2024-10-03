@@ -5,7 +5,8 @@
         "model": "Mustang GT",
         "year": 2024,
         "price": 95.00,
-        "available": true
+        "available": true,
+        "description": "The 2024 Ford Mustang GT is a powerful and stylish sports car that is sure to turn heads. With a 5.0L V8 engine that produces 460 horsepower and 420 lb-ft of torque, this car is capable of going from 0 to 60 mph in just 4.3 seconds. The Mustang GT also features a 10-speed automatic transmission, a sport-tuned suspension, and a variety of driver assistance features to help you stay safe on the road. Whether you're cruising down the highway or tearing up the track, the 2024 Ford Mustang GT is sure to deliver an exhilarating driving experience."
     },
     {
         "id": 1,
@@ -13,7 +14,8 @@
         "model": "Camry",
         "year": 2020,
         "price": 24000,
-        "available": true
+        "available": true,
+        "description": "The 2020 Toyota Camry combines reliability with modern technology, offering a comfortable ride with impressive fuel efficiency. Perfect for both city driving and long-distance travel, the Camry is a well-rounded sedan with advanced safety features and a sleek design."
     },
     {
         "id": 2,
@@ -21,7 +23,8 @@
         "model": "Accord",
         "year": 2019,
         "price": 22000,
-        "available": false
+        "available": false,
+        "description": "The 2019 Honda Accord delivers a sophisticated driving experience, blending performance and comfort in a stylish package. Known for its reliability, the Accord features a spacious interior, excellent fuel economy, and cutting-edge safety features."
     },
     {
         "id": 3,
@@ -29,7 +32,8 @@
         "model": "Camaro",
         "year": 2021,
         "price": 30000,
-        "available": true
+        "available": true,
+        "description": "The 2021 Chevrolet Camaro is a classic American muscle car with modern technology and performance enhancements. With a range of powerful engines and track-ready handling, the Camaro offers an exhilarating driving experience. Whether you're cruising down the highway or tearing up the track, the Camaro is sure to turn heads wherever you go."
     },
     {
         "id": 4,
@@ -37,6 +41,7 @@
         "model": "Challenger",
         "year": 2022,
         "price": 35000,
-        "available": true
+        "available": true,
+        "description": "The 2022 Dodge Challenger is a powerful and stylish muscle car that pays homage to its classic roots while offering modern performance and technology. With a range of high-performance engines and aggressive styling, the Challenger is sure to turn heads wherever you go. Whether you're cruising down the highway or tearing up the track, the Challenger delivers an exhilarating driving experience."
     }
 ]

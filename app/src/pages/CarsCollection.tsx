@@ -10,6 +10,7 @@ export interface Car {
     year: number;
     price: number;
     available: boolean;
+    description: string;
 }
 
 const CarsCollection: React.FC = () => {
