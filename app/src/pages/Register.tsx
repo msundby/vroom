@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
+import Button from '../components/Button';
 
 
 const Register: React.FC = () => {
@@ -34,6 +35,11 @@ const Register: React.FC = () => {
           placeholderTextColor="white"
         />
       </View>
+      <Button
+      title="Hellosan"
+      onPress={() => {
+        console.log('Button pressed');
+      }} />
     </View>
   );
 };
@@ -59,8 +65,8 @@ const styles = StyleSheet.create({
     borderColor: '#b8860b',
     borderRadius: 5,
     padding: 10,
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 10,
+    marginBottom: 1,
     backgroundColor: '#3a3a3c'
   },
 });
