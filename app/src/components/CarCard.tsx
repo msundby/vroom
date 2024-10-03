@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
-import {Car } from '../pages/CarsCollection'
+import { Car } from '../pages/CarsCollection'
 import Button from '../components/Button'
 
 

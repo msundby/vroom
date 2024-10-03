@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Image } from 'react-native';
 
@@ -14,12 +14,15 @@ const NavBar: React.FC = () => {
         <View style={styles.navbar}>
             <TouchableOpacity style={styles.button} >
                 <Image source={require(homeIcon)} width={24} height={24} />
+                <Text>Browse Cars</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} >
                 <Image source={require(bookingsIcon)} width={24} height={24} />
+                <Text>View Bookings</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} >
                 <Image source={require(profileIcon)} width={24} height={24} />
+                <Text>Profile</Text>
             </TouchableOpacity>
         </View>
     );
@@ -39,6 +42,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     button: {
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
