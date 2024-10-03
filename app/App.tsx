@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import CarsCollection from './src/pages/CarsCollection';
 import Register from './src/pages/Register';
+import NavBar from './src/components/NavBar';
 
 
 const Stack = createStackNavigator();
@@ -14,6 +15,7 @@ const App: React.FC = () => {
       <Stack.Navigator initialRouteName="CarsCollection">
         <Stack.Screen name="CarsCollection" component={Register} options={{ headerShown: false }} />
       </Stack.Navigator>
+      <NavBar />
     </NavigationContainer>
   );
 }
