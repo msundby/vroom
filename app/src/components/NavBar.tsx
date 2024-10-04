@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const NavBar: React.FC = () => {
@@ -11,17 +11,29 @@ const NavBar: React.FC = () => {
 
     return (
         <View style={styles.navbar}>
-            <TouchableOpacity style={styles.navButton} >
-                <Image source={require(homeIcon)} style={styles.icon} />
-            </TouchableOpacity>
+            <TouchableHighlight 
+                style={styles.navButton} 
+                onPress={() => navigation.navigate('CarsCollection')} 
+                underlayColor={'#3a3a3c'} 
+                >
+                <Image source={require(homeIcon)} style={styles.icon}  />
+            </TouchableHighlight>
             <View style={styles.divider} />
-            <TouchableOpacity style={styles.navButton} >
+            <TouchableHighlight 
+                style={styles.navButton} 
+                onPress={() => navigation.navigate('Register')} 
+                underlayColor={'#3a3a3c'} 
+                >
                 <Image source={require(bookingsIcon)} style={styles.icon} />
-            </TouchableOpacity>
+            </TouchableHighlight>
             <View style={styles.divider} />
-            <TouchableOpacity style={styles.navButton} >
+            <TouchableHighlight 
+                style={styles.navButton} 
+                onPress={() => navigation.navigate('Profile')} 
+                underlayColor={'#3a3a3c'}
+                >
                 <Image source={require(profileIcon)} style={styles.icon} />
-            </TouchableOpacity>
+            </TouchableHighlight>
         </View>
     );
 };
