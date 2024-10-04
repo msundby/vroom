@@ -13,7 +13,7 @@ const Stack = createStackNavigator();
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Profile">
+      <Stack.Navigator initialRouteName="CarsCollection">
         <Stack.Screen name="CarsCollection" component={CarsCollection} options={{ headerShown: false }} />
         <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false}}></Stack.Screen>
         <Stack.Screen name="Login" component={LoginComponent} options={{ headerShown: false }} />
