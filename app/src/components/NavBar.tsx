@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
                 </Pressable>
                 <View style={styles.divider} />
                 <Pressable 
-                    onPress={() => navigation.navigate('Register')} 
+                    onPress={() => navigation.navigate('Login')} 
                     style={styles.navButton} 
                     >
                     <Image source={require(bookingsIcon)} style={styles.icon} />

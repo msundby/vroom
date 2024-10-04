@@ -1,23 +1,90 @@
-import React from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, Text, TextInput, StyleSheet, Alert, TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import User from '../interfaces/User';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginComponent: React.FC = () => {
+  const [username, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [storedUser, setStoredUser] = useState<User | null>(null);
+
+  const navigation = useNavigation();
+
+  const storeTestUser = async () => {
+    const testUser = {
+      name: 'lasse',
+      adress: '123 Main St',
+      password: '1234',
+      email: 'john.doe@example.com',
+      driverLicenseNumber: 123456,
+      phoneNumber: 9876543210,
+      profileImagePath: null
+    };
+    try {
+      await AsyncStorage.setItem('@user', JSON.stringify(testUser));
+      console.log('Test user stored successfully');
+    } catch (error) {
+      console.error('Error storing test user:', error);
+    }
+  };
+  
+  // Run this function by calling it from inside your component's useEffect, like:
+  useEffect(() => {
+    storeTestUser();
+  }, []);
+  
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await AsyncStorage.getItem('@user');
+        if (userData) {
+          setStoredUser(JSON.parse(userData));
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const handleLogin = () => {
+    if (storedUser) {
+      if (username === storedUser.name && password === storedUser.password) {
+        Alert.alert('Success', 'Logged in successfully!');
+        navigation.navigate('CarsCollection');
+      } else {
+        Alert.alert('Error', 'Invalid username or password');
+      }
+    } else {
+      Alert.alert('Error', 'No registered user found. Please register first.');
+    }
+  };
+
     return (
       <View style={styles.loginContainer}>
         <View style={styles.loginBox}>
           <TextInput
             style={styles.inputField}
             placeholder="Username"
+            placeholderTextColor="white"
+            value={username}
+            onChangeText={(text) => setName(text)}
           />
           <TextInput
             style={styles.inputField}
             placeholder="Password"
             secureTextEntry={true}
+            placeholderTextColor="white"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
           <TouchableOpacity style={styles.forgotPassword}>
             <Text style={styles.loginLink}>Forgot password</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.loginButton}>
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
           <View style={styles.signupLink}>
