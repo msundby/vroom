@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   inputGroup: {
-    marginVertical: 15,
+    marginVertical: 5,
   },
   label: {
     fontSize: 18,
