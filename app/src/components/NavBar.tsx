@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, StyleSheet, TouchableHighlight } from 'react-native';
+import { Image, View, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const NavBar: React.FC = () => {
@@ -11,29 +11,26 @@ const NavBar: React.FC = () => {
 
     return (
         <View style={styles.navbar}>
-            <TouchableHighlight 
-                style={styles.navButton} 
-                onPress={() => navigation.navigate('CarsCollection')} 
-                underlayColor={'#3a3a3c'} 
-                >
-                <Image source={require(homeIcon)} style={styles.icon}  />
-            </TouchableHighlight>
-            <View style={styles.divider} />
-            <TouchableHighlight 
-                style={styles.navButton} 
-                onPress={() => navigation.navigate('Register')} 
-                underlayColor={'#3a3a3c'} 
-                >
-                <Image source={require(bookingsIcon)} style={styles.icon} />
-            </TouchableHighlight>
-            <View style={styles.divider} />
-            <TouchableHighlight 
-                style={styles.navButton} 
-                onPress={() => navigation.navigate('Profile')} 
-                underlayColor={'#3a3a3c'}
-                >
-                <Image source={require(profileIcon)} style={styles.icon} />
-            </TouchableHighlight>
+                <Pressable 
+                    onPress={() => navigation.navigate('CarsCollection')} 
+                    style={styles.navButton} 
+                    >
+                    <Image source={require(homeIcon)} style={styles.icon}  />
+                </Pressable>
+                <View style={styles.divider} />
+                <Pressable 
+                    onPress={() => navigation.navigate('Register')} 
+                    style={styles.navButton} 
+                    >
+                    <Image source={require(bookingsIcon)} style={styles.icon} />
+                </Pressable>
+                <View style={styles.divider} />
+                <Pressable 
+                    onPress={() => navigation.navigate('Profile')} 
+                    style={styles.navButton}
+                    >
+                    <Image source={require(profileIcon)} style={styles.icon} />
+                </Pressable>
         </View>
     );
 };

@@ -43,18 +43,18 @@ const CarsCollection: React.FC = () => {
     return (
         <SafeAreaView style={styles.safeArea}>
             <ScrollView>
-            <View style={styles.container}>
-            {carCollectionArray.length > 0 ? (
-                carCollectionArray.map((car: Car) => (
-                    <CarCard
-                    key={car.id} 
-                    car={car} 
-                    carCardOptions={{ showPrice: true, showAvailability: true, shinyBorder: true }}  />
-                ))
-            ) : (
-                <Text>Loading...</Text>
-            )}
-        </View>
+                <View style={styles.container}>
+                {carCollectionArray.length > 0 ? (
+                    carCollectionArray.map((car: Car) => (
+                        <CarCard
+                        key={car.id} 
+                        car={car} 
+                        carCardOptions={{ showPrice: true, showAvailability: true, shinyBorder: true }}  />
+                    ))
+                ) : (
+                    <Text>Loading...</Text>
+                )}
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
