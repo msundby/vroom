@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
 
       loginButtonText: {
         fontSize: 18,
+        fontWeight: 'bold'
       },
 
       signupLink: {
