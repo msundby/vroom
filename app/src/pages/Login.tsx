@@ -81,7 +81,9 @@ const LoginComponent: React.FC = () => {
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
-          <TouchableOpacity style={styles.forgotPassword}>
+          <TouchableOpacity style={styles.forgotPassword} onPress={() => {
+              Alert.alert('Holdkæft hvor er du dum at glemme dit password!')
+          }}>
             <Text style={styles.loginLink}>Forgot password</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
@@ -89,7 +91,9 @@ const LoginComponent: React.FC = () => {
           </TouchableOpacity>
           <View style={styles.signupLink}>
             <Text style={styles.signupText}>Don't have an account? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate('Register')
+            }}>
               <Text style={styles.loginLink}>Sign up</Text>
             </TouchableOpacity>
           </View>
