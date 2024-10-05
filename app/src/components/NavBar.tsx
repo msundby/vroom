@@ -15,14 +15,17 @@ const NavBar: React.FC = () => {
     const handleRoute = async (destination: keyof RootStackParamList) => {
         try {
             const userData = await AsyncStorage.getItem('@logged_user');
-            if (!userData) {
-                navigation.navigate('Login', { redirectTo: destination });
-                if (destination === 'CarsCollection' || destination === 'Register') {
-                    navigation.navigate(destination);
-                } else if (destination === 'Profile') { //This seems redundant but is necessary to avoid a TS error 
-                navigation.navigate('Profile');
-                } else if (destination === 'MyBookings') {
-                    navigation.navigate('MyBookings');
+            if (destination === 'CarsCollection' || destination === 'Register') {
+                navigation.navigate(destination);
+            } else {
+                if (userData) {
+                    if (destination === 'Profile') { //This seems redundant but is necessary to avoid a TS error 
+                        navigation.navigate('Profile');
+                    } else if (destination === 'MyBookings') {
+                        navigation.navigate('MyBookings');
+                    }
+                } else {
+                    navigation.navigate('Login', { redirectTo: destination });
                 }
             }
         } catch (error) {
