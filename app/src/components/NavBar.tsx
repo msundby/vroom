@@ -1,10 +1,12 @@
 import React from 'react';
 import { Image, View, StyleSheet, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/types';
 
 const NavBar: React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+    
     const homeIcon: string = '../../assets/icons/home-icon.png';
     const bookingsIcon: string = '../../assets/icons/bookings-icon.png';
     const profileIcon: string = '../../assets/icons/wheel-icon.png';
