@@ -6,4 +6,5 @@ export type RootStackParamList = {
   Login: { redirectTo?: string; car?: Car } | undefined;
   Register: undefined;
   Booking: { car: Car };
+  MyBookings: undefined;
 };
