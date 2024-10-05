@@ -1,22 +1,48 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, Platform, ScrollView } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image, ScrollView, Alert } from 'react-native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import { Feather } from '@expo/vector-icons';
 import { StatusBar } from 'react-native';
+import { RootStackParamList } from '../navigation/types';
 
 const Profile: React.FC = () => {
-  const route = useRoute();
-  const { username } = (route.params as { username: string }) || 'Guest';
-
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const [isEditing, setIsEditing] = useState(false);
-  const [name, setName] = useState(username || 'Anders Andersen');
-  const [address, setAddress] = useState('Andersvejen 1');
-  const [email, setEmail] = useState('anders@and.dk');
-  const [phoneNumber, setPhoneNumber] = useState('+45 12345678');
-  const [driversLicenseNumber, setDriversLicenseNumber] = useState('123456789');
+  
+  const [id, setId] = useState(0);
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [driversLicenseNumber, setDriversLicenseNumber] = useState('');
   const [driversLicenseImage, setDriversLicenseImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadUserData = async () => {
+      try {
+        const storedUser = await AsyncStorage.getItem('@logged_user');
+        if (storedUser) {
+          const user = JSON.parse(storedUser);
+          setId(user.id || 0);
+          setName(user.name || '');
+          setAddress(user.address || ''); 
+          setEmail(user.email || '');
+          setPhoneNumber(user.phoneNumber ? String(user.phoneNumber) : ''); 
+          setDriversLicenseNumber(user.driverLicenseNumber ? String(user.driverLicenseNumber) : ''); 
+          setDriversLicenseImage(user.profileImagePath || null);
+        } 
+      } catch (error) {
+        console.error("Error loading user data:", error);
+        Alert.alert("Error", "Unable to load user data. Please log in again.");
+        navigation.navigate('Login');
+      }
+    };
+
+    loadUserData();
+  }, [navigation]);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -31,9 +57,25 @@ const Profile: React.FC = () => {
     }
   };
 
-  const handleSave = () => {
-    // TODO opdater ændringer til profiles.json
-    setIsEditing(false);
+  const handleSave = async () => {
+    const updatedUser = {
+      id,
+      name,
+      address,
+      email,
+      phoneNumber,
+      driverLicenseNumber: driversLicenseNumber,
+      profileImagePath: driversLicenseImage,
+    };
+
+    try {
+      await AsyncStorage.setItem('@logged_user', JSON.stringify(updatedUser));
+      Alert.alert('Success', 'Profile updated successfully!');
+      setIsEditing(false);
+    } catch (error) {
+      console.error('Error saving profile data:', error);
+      Alert.alert('Error', 'There was an issue saving your profile. Please try again.');
+    }
   };
 
   return (
@@ -42,10 +84,7 @@ const Profile: React.FC = () => {
         <View style={styles.container}>
           <Text style={styles.heading}>Profile</Text>
 
-          <TouchableOpacity 
-            onPress={() => setIsEditing(!isEditing)} 
-            style={styles.editIcon}
-          >
+          <TouchableOpacity onPress={() => setIsEditing(!isEditing)} style={styles.editIcon}>
             <Feather name="edit" size={24} color="#b8860b" />
           </TouchableOpacity>
 
@@ -126,10 +165,7 @@ const Profile: React.FC = () => {
           </View>
 
           {isEditing && (
-            <TouchableOpacity 
-              style={styles.button}
-              onPress={handleSave}
-            >
+            <TouchableOpacity style={styles.button} onPress={handleSave}>
               <Text style={styles.buttonText}>Save Changes</Text>
             </TouchableOpacity>
           )}
@@ -145,7 +181,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#2c2c2e',
-    paddingTop: StatusBar.currentHeight
+    paddingTop: StatusBar.currentHeight,
   },
   scrollContainer: {
     paddingBottom: 58,
@@ -198,7 +234,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonText: {
-    color: '#2c2c2e',
+    color: '#2c2e34',
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -208,14 +244,14 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#b8860b',
     overflow: 'hidden',
-    alignItems: 'center', 
+    alignItems: 'center',
     justifyContent: 'center',
-    padding: 5, 
+    padding: 5,
   },
   image: {
     width: '100%',
-    aspectRatio: 4 / 3, 
-    borderRadius: 8, 
+    aspectRatio: 4 / 3,
+    borderRadius: 8,
   },
   uploadButton: {
     padding: 15,
@@ -225,7 +261,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   uploadButtonText: {
-    color: '#2c2c2e',
+    color: '#2c2e34',
     fontSize: 16,
     fontWeight: 'bold',
   },

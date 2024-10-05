@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from '../interfaces/User';
 import { useRoute, RouteProp, useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
-import { Car } from './CarsCollection';
 
 type LoginRouteProp = RouteProp<RootStackParamList, 'Login'>;
 
@@ -19,8 +18,9 @@ const LoginComponent: React.FC = () => {
 
   const storeTestUser = async () => {
     const testUser = {
+      id: 1,
       name: 'lasse',
-      adress: '123 Main St',
+      address: '123 Main St',
       password: '1234',
       email: 'john.doe@example.com',
       driverLicenseNumber: 123456,
@@ -34,8 +34,7 @@ const LoginComponent: React.FC = () => {
       console.error('Error storing test user:', error);
     }
   };
-  
-  // Run this function by calling it from inside your component's useEffect, like:
+
   useEffect(() => {
     storeTestUser();
   }, []);

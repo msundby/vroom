@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform, ScrollView, StatusBar, Modal, Alert } from 'react-native';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
 
 type BookingRouteProp = RouteProp<RootStackParamList, 'Booking'>;
@@ -12,7 +13,9 @@ type BookingRouteProp = RouteProp<RootStackParamList, 'Booking'>;
 const Booking: React.FC = () => {
   const route = useRoute<BookingRouteProp>();
   const { car } = route.params;
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+  const [customerID, setCustomerID] = useState<string | null>(null);
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined); 
@@ -23,6 +26,26 @@ const Booking: React.FC = () => {
 
   const startDateRef = useRef<TouchableOpacity>(null);
   const endDateRef = useRef<TouchableOpacity>(null);
+
+  useEffect(() => {
+    const fetchLoggedUser = async () => {
+      try {
+        const storedUser = await AsyncStorage.getItem('@logged_user');
+        if (storedUser) {
+          const user = JSON.parse(storedUser);
+          setCustomerID(user.id || ''); 
+        } else {
+          navigation.navigate('Login');
+        }
+      } catch (error) {
+        console.error("Error fetching logged user:", error);
+        Alert.alert("Error", "Unable to retrieve user information. Please log in again.");
+        navigation.navigate('Login'); 
+      }
+    };
+
+    fetchLoggedUser(); 
+  }, [navigation]);
 
   const calculateInputPosition = (ref: React.RefObject<TouchableOpacity>) => {
     ref.current?.measure((fx, fy, width, height, px, py) => {
@@ -56,7 +79,7 @@ const Booking: React.FC = () => {
       return;
     }
 
-    const customerID = "12345";
+    
     const totalPrice = calculateTotalPrice(car.price, startDate, endDate);
 
     const booking = {
