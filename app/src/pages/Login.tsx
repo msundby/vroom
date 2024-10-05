@@ -2,14 +2,20 @@ import React, { useState, useEffect } from 'react';
 import {View, Text, TextInput, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import User from '../interfaces/User';
-import { useNavigation } from '@react-navigation/native';
+import { useRoute, RouteProp, useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/types';
+import { Car } from './CarsCollection';
+
+type LoginRouteProp = RouteProp<RootStackParamList, 'Login'>;
 
 const LoginComponent: React.FC = () => {
   const [username, setName] = useState('');
   const [password, setPassword] = useState('');
   const [storedUser, setStoredUser] = useState<User | null>(null);
 
-  const navigation = useNavigation();
+  const route = useRoute<LoginRouteProp>();
+  const { redirectTo, car } = route.params || {};
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const storeTestUser = async () => {
     const testUser = {
@@ -50,11 +56,16 @@ const LoginComponent: React.FC = () => {
     fetchUser();
   }, []);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (storedUser) {
       if (username === storedUser.name && password === storedUser.password) {
+        await AsyncStorage.setItem('@logged_user', JSON.stringify(storedUser));
         Alert.alert('Success', 'Logged in successfully!');
-        navigation.navigate('CarsCollection');
+        if (redirectTo === 'Booking' && car) {
+          navigation.navigate('Booking', { car });
+        } else {
+          navigation.navigate('CarsCollection');
+        }
       } else {
         Alert.alert('Error', 'Invalid username or password');
       }

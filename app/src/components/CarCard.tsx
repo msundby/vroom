@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { Car } from '../pages/CarsCollection'
 import Button from '../components/Button'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/types';
 
 
 interface CarCardProps {
@@ -13,6 +16,21 @@ interface CarCardProps {
 }
 
 export default function CarCard(Props: Readonly<CarCardProps>) {
+
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+    const handleBookNow = async () => {
+        try {
+        const userData = await AsyncStorage.getItem('@logged_user');
+        if (userData) {
+            navigation.navigate('Booking', { car: Props.car });
+        } else {
+            navigation.navigate('Login', { redirectTo: 'Booking', car: Props.car });
+        }
+        } catch (error) {
+        console.error('Error checking login status:', error);
+        }
+    };
 
   return (
     <View style={styles.cardWrapper}>
@@ -27,7 +45,7 @@ export default function CarCard(Props: Readonly<CarCardProps>) {
         <View style={styles.cardFooter}>
             <View style={styles.buttonContainer}>
                 <Button title="View Details" onPress={() => {}} />
-                <Button title="Book Now" onPress={() => {}} />
+                <Button title="Book Now" onPress={handleBookNow} />
             </View>
             <Text style={styles.priceText}>Price: {Props.car.price} $</Text>
         </View>
