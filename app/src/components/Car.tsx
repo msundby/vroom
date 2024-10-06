@@ -1,4 +1,5 @@
 export interface Car {
+    image: string | undefined;
     id: number;
     make: string;
     model: string;

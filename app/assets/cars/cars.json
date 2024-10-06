@@ -1,47 +1,52 @@
 [
     {
         "id": 0,
-        "make": "Ford",
-        "model": "Mustang GT",
+        "make": "Mercedes-Benz",
+        "model": "S 580 4MATIC",
         "year": 2024,
-        "price": 95.00,
+        "price": 700,
         "available": true,
-        "description": "The 2024 Ford Mustang GT is a powerful and stylish sports car that is sure to turn heads. With a 5.0L V8 engine that produces 460 horsepower and 420 lb-ft of torque, this car is capable of going from 0 to 60 mph in just 4.3 seconds. The Mustang GT also features a 10-speed automatic transmission, a sport-tuned suspension, and a variety of driver assistance features to help you stay safe on the road. Whether you're cruising down the highway or tearing up the track, the 2024 Ford Mustang GT is sure to deliver an exhilarating driving experience."
+        "description": "The 2024 Mercedes-Benz S-Class sets the standard for luxury sedans, combining cutting-edge technology with top-tier comfort. It offers a smooth ride with a powerful V8 engine, luxurious interior details, and advanced driver assistance systems.",
+        "image": "https://vehicle-images.dealerinspire.com/stock-images/chrome/de0e8ee009bb440d4473a5a52e5224ab.png"
     },
     {
         "id": 1,
-        "make": "Toyota",
-        "model": "Camry",
-        "year": 2020,
-        "price": 24000,
+        "make": "BMW",
+        "model": "750i xDrive",
+        "year": 2024,
+        "price": 650,
         "available": true,
-        "description": "The 2020 Toyota Camry combines reliability with modern technology, offering a comfortable ride with impressive fuel efficiency. Perfect for both city driving and long-distance travel, the Camry is a well-rounded sedan with advanced safety features and a sleek design."
+        "description": "The BMW 7 Series combines power and elegance, featuring a twin-turbo V8 engine, spacious and luxurious interior, and state-of-the-art tech for a sophisticated driving experience. The 7 Series is an iconic luxury sedan.",
+        "image": "https://vehicle-images.dealerinspire.com/64ec-110007838/WBA33EH02RCT01870/c8443be9cd40de4c4436a1ddb7702b39.jpg"
     },
     {
         "id": 2,
-        "make": "Honda",
-        "model": "Accord",
-        "year": 2019,
-        "price": 22000,
-        "available": false,
-        "description": "The 2019 Honda Accord delivers a sophisticated driving experience, blending performance and comfort in a stylish package. Known for its reliability, the Accord features a spacious interior, excellent fuel economy, and cutting-edge safety features."
+        "make": "Audi",
+        "model": "60 TFSI e Plug-In Hybrid",
+        "year": 2024,
+        "price": 600,
+        "available": true,
+        "description": "The 2024 Audi A8 offers both high performance and sustainable luxury with its plug-in hybrid system. The car's lavish interior, smooth ride, and advanced tech make it one of the most attractive choices for luxury buyers.",
+        "image": "https://media.autoexpress.co.uk/image/private/s--fFh20cL1--/f_auto,t_content-image-full-desktop@1/v1650533586/autoexpress/2022/04/Audi%20A8%2060%20TFSI%20e%202022%20UK-14.jpg"
     },
     {
         "id": 3,
-        "make": "Chevrolet",
-        "model": "Camaro",
-        "year": 2021,
-        "price": 30000,
+        "make": "Porsche",
+        "model": "Panamera Turbo S",
+        "year": 2024,
+        "price": 850,
         "available": true,
-        "description": "The 2021 Chevrolet Camaro is a classic American muscle car with modern technology and performance enhancements. With a range of powerful engines and track-ready handling, the Camaro offers an exhilarating driving experience. Whether you're cruising down the highway or tearing up the track, the Camaro is sure to turn heads wherever you go."
+        "description": "The Porsche Panamera Turbo S blends sports car performance with luxury sedan comfort. Boasting a twin-turbocharged V8 engine, this luxury car offers thrilling acceleration, along with a refined and elegant interior.",
+        "image": "https://hips.hearstapps.com/hmg-prod/images/2024-porsche-panamera-turbo-e-hybrid-104-65f05925881bd.jpg?crop=0.697xw:0.588xh;0.0449xw,0.259xh&resize=2048:*"
     },
     {
         "id": 4,
-        "make": "Dodge",
-        "model": "Challenger",
-        "year": 2022,
-        "price": 35000,
+        "make": "Lexus",
+        "model": "LS 500 AWD",
+        "year": 2024,
+        "price": 550,
         "available": true,
-        "description": "The 2022 Dodge Challenger is a powerful and stylish muscle car that pays homage to its classic roots while offering modern performance and technology. With a range of high-performance engines and aggressive styling, the Challenger is sure to turn heads wherever you go. Whether you're cruising down the highway or tearing up the track, the Challenger delivers an exhilarating driving experience."
+        "description": "The Lexus LS 500 is a top-tier luxury sedan known for its exceptional reliability and elegant design. Featuring a twin-turbo V6 engine, spacious interior, and an array of advanced technology features, it delivers a premium experience.",
+        "image": "https://vehicle-images.dealerinspire.com/71a5-110004196/JTHG5LGF1P5011726/e50f0604593e347ef4d550c79262d999.jpg"
     }
 ]

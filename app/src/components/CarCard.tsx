@@ -18,11 +18,11 @@ export default function CarCard(Props: Readonly<CarCardProps>) {
   return (
     <View style={styles.cardWrapper}>
         <View style={styles.cardContents}>
-            <Image source={require('../../assets/cars/images/no-image.jpg')} style={styles.carImage} />
+            <Image source={{ uri: Props.car.image }} style={styles.carImage} />
             <View style={styles.cardText}>
                 <Text style={styles.cardHeading}>{Props.car.make} {Props.car.model}</Text>
                 <Text style={styles.cardSubHeading}>{Props.car.year}</Text>
-                <Text style={styles.carDescription}>Dolor sit amet, consectetur adipiscing elit. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit.</Text>
+                <Text style={styles.carDescription}>{Props.car.description}</Text>
             </View>
         </View>
         <View style={styles.cardFooter}>
