@@ -1,9 +1,11 @@
 export default interface user {
-    name: String;
-    adress: String;
-    password: String;
-    email: String;
-    driverLicenseNumber: number;
-    phoneNumber: number;
-    profileImagePath: any;
+    id: number,
+    name: string,
+    address: string,
+    password: string,
+    email: string,
+    driverLicenseNumber: number,
+    phoneNumber: number,
+    profileImagePath: string,
+    driverLicenseImage: string
 }
