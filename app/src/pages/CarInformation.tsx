@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native';
 import { useNavigation, NavigationProp, useRoute, RouteProp } from '@react-navigation/native';
 import { Car } from '../interfaces/Car';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,6 +10,7 @@ import { RootStackParamList } from '../navigation/types';
 type BookingRouteProp = RouteProp<RootStackParamList, 'CarInformation'>;
 
 const CarInformation: React.FC = () => {
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation<NavigationProp<RootStackParamList, 'CarInformation'>>();
   const route = useRoute<BookingRouteProp>();
   const { params } = route;
@@ -44,7 +45,9 @@ const CarInformation: React.FC = () => {
     return (
         <View style={styles.container}>
           <Text style={styles.title}>Car Information</Text>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
           <Image source={{ uri: car.image }} style={styles.carImage} />
+          </TouchableOpacity>
           <Text style={styles.label}>Make: {car.make}</Text>
           <Text style={styles.label}>Model: {car.model}</Text>
           <Text style={styles.label}>Year: {car.year}</Text>
@@ -56,7 +59,19 @@ const CarInformation: React.FC = () => {
           <TouchableOpacity style={styles.bookingButton}>
             <Button  title="Book Now" onPress={handleBookNow} />
           </TouchableOpacity>
-          
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              setModalVisible(!modalVisible);
+            }}>
+              <View style={styles.modalBackground}>
+                <TouchableOpacity style={styles.modalContainer} onPress={() => setModalVisible(false)}>
+                  <Image source={{ uri: car.image }} style={styles.enlargedImage} />
+                </TouchableOpacity>
+              </View>
+            </Modal>
         </View>
 
     );
@@ -97,6 +112,22 @@ const styles = StyleSheet.create({
     bookingButton: {
       marginTop: 20,
       width: '100%',
+    },
+    modalBackground: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.8)', // Transparent black background
+    },
+    modalContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    enlargedImage: {
+      width: 300,
+      height: 300,
+      resizeMode: 'contain', // Ensure the image is fully visible and scaled appropriately
+      borderRadius: 10,
     }
   });
   
