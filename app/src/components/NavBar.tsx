@@ -1,26 +1,60 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { Image } from 'react-native';
+import { Image, View, StyleSheet, Pressable } from 'react-native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RootStackParamList } from '../navigation/types';
 
 const NavBar: React.FC = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
+    
     const homeIcon: string = '../../assets/icons/home-icon.png';
     const bookingsIcon: string = '../../assets/icons/bookings-icon.png';
     const profileIcon: string = '../../assets/icons/wheel-icon.png';
 
+    const handleRoute = async (destination: keyof RootStackParamList) => {
+        try {
+            const userData = await AsyncStorage.getItem('@logged_user');
+            if (destination === 'CarsCollection' || destination === 'Register') {
+                navigation.navigate(destination);
+            } else {
+                if (userData) {
+                    if (destination === 'Profile') { //This seems redundant but is necessary to avoid a TS error 
+                        navigation.navigate('Profile');
+                    } else if (destination === 'MyBookings') {
+                        navigation.navigate('MyBookings');
+                    }
+                } else {
+                    navigation.navigate('Login', { redirectTo: destination });
+                }
+            }
+        } catch (error) {
+            console.error('Error checking login status:', error);
+        }
+    }
+
     return (
         <View style={styles.navbar}>
-            <TouchableOpacity >
-                <Image source={require(homeIcon)} style={styles.icon} />
-            </TouchableOpacity>
-            <TouchableOpacity >
-                <Image source={require(bookingsIcon)} style={styles.icon} />
-            </TouchableOpacity>
-            <TouchableOpacity >
-                <Image source={require(profileIcon)} style={styles.icon} />
-            </TouchableOpacity>
+                <Pressable 
+                    onPress={() => handleRoute('CarsCollection')} 
+                    style={styles.navButton} 
+                    >
+                    <Image source={require(homeIcon)} style={styles.icon}  />
+                </Pressable>
+                <View style={styles.divider} />
+                <Pressable 
+                    onPress={() => handleRoute('MyBookings')} 
+                    style={styles.navButton} 
+                    >
+                    <Image source={require(bookingsIcon)} style={styles.icon} />
+                </Pressable>
+                <View style={styles.divider} />
+                <Pressable 
+                    onPress={() => handleRoute('Profile')} 
+                    style={styles.navButton}
+                    >
+                    <Image source={require(profileIcon)} style={styles.icon} />
+                </Pressable>
         </View>
     );
 };
@@ -38,10 +72,21 @@ const styles = StyleSheet.create({
         bottom: 0,
         width: '100%',
     },
-    icon: {
-        width: 18,
+    navButton: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+    },
+    icon: { 
         height: 18,
         tintColor: '#b8860b',
+        resizeMode: 'contain',
+    },
+    divider: {
+        width: 1, 
+        height: '40%', 
+        backgroundColor: '#3a3a3c',
     }
 });
 

@@ -1,28 +1,109 @@
-import React from 'react';
-import {View, Text, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {View, Text, TextInput, StyleSheet, Alert, TouchableOpacity} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import User from '../interfaces/User';
+import { useRoute, RouteProp, useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/types';
+
+type LoginRouteProp = RouteProp<RootStackParamList, 'Login'>;
 
 const LoginComponent: React.FC = () => {
+  const [username, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [storedUser, setStoredUser] = useState<User | null>(null);
+
+  const route = useRoute<LoginRouteProp>();
+  const { redirectTo, car } = route.params || {};
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const storeTestUser = async () => {
+    const testUser = {
+      id: 0,
+      name: 'lasse',
+      address: '123 Main St',
+      password: '1234',
+      email: 'john.doe@example.com',
+      driverLicenseNumber: 123456,
+      phoneNumber: 9876543210,
+      profileImagePath: null
+    };
+    try {
+      await AsyncStorage.setItem('@user', JSON.stringify(testUser));
+      console.log('Test user stored successfully');
+    } catch (error) {
+      console.error('Error storing test user:', error);
+    }
+  };
+
+  useEffect(() => {
+    storeTestUser();
+  }, []);
+  
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await AsyncStorage.getItem('@user');
+        if (userData) {
+          setStoredUser(JSON.parse(userData));
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const handleLogin = async () => {
+    if (storedUser) {
+      if (username === storedUser.name && password === storedUser.password) {
+        await AsyncStorage.setItem('@logged_user', JSON.stringify(storedUser));
+        Alert.alert('Success', 'Logged in successfully!');
+        if (redirectTo === 'Booking' && car) {
+          navigation.navigate('Booking', { car });
+        } else {
+          navigation.navigate('CarsCollection');
+        }
+      } else {
+        Alert.alert('Error', 'Invalid username or password');
+      }
+    } else {
+      Alert.alert('Error', 'No registered user found. Please register first.');
+    }
+  };
+
     return (
       <View style={styles.loginContainer}>
         <View style={styles.loginBox}>
           <TextInput
             style={styles.inputField}
             placeholder="Username"
+            placeholderTextColor="white"
+            value={username}
+            onChangeText={(text) => setName(text)}
           />
           <TextInput
             style={styles.inputField}
             placeholder="Password"
             secureTextEntry={true}
+            placeholderTextColor="white"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
-          <TouchableOpacity style={styles.forgotPassword}>
+          <TouchableOpacity style={styles.forgotPassword} onPress={() => {
+              Alert.alert('Holdkæft hvor er du dum at glemme dit password!')
+          }}>
             <Text style={styles.loginLink}>Forgot password</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.loginButton}>
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
           <View style={styles.signupLink}>
             <Text style={styles.signupText}>Don't have an account? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {
+                navigation.navigate('Register')
+            }}>
               <Text style={styles.loginLink}>Sign up</Text>
             </TouchableOpacity>
           </View>
@@ -77,6 +158,7 @@ const styles = StyleSheet.create({
 
       loginButtonText: {
         fontSize: 18,
+        fontWeight: 'bold'
       },
 
       signupLink: {
