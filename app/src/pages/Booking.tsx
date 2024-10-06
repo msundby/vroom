@@ -15,7 +15,7 @@ const Booking: React.FC = () => {
   const { car } = route.params;
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
-  const [customerID, setCustomerID] = useState<string | null>(null);
+  const [customerID, setCustomerID] = useState<number | null>(null);
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
   const [tempDate, setTempDate] = useState<Date | undefined>(undefined); 
@@ -33,7 +33,7 @@ const Booking: React.FC = () => {
         const storedUser = await AsyncStorage.getItem('@logged_user');
         if (storedUser) {
           const user = JSON.parse(storedUser);
-          setCustomerID(user.id || ''); 
+          setCustomerID(user.id !== undefined && user.id !== null ? user.id: ''); 
         } else {
           navigation.navigate('Login');
         }
@@ -79,26 +79,29 @@ const Booking: React.FC = () => {
       return;
     }
 
-    
     const totalPrice = calculateTotalPrice(car.price, startDate, endDate);
-
-    const booking = {
-      customerID,
-      carModel: car.model,
-      startDate: startDate.toDateString(),
-      endDate: endDate.toDateString(),
-      totalPrice,
-    };
 
     try {
       const existingBookings = await AsyncStorage.getItem('@bookings');
       const parsedBookings = existingBookings ? JSON.parse(existingBookings) : [];
+      const carID = car.id;
+      const nextBookingID = parsedBookings.length > 0 ? parsedBookings[parsedBookings.length - 1].bookingID + 1 : 0;
+
+      const booking = {
+        bookingID: nextBookingID,
+        customerID,
+        carID,
+        carModel: car.model,
+        startDate: startDate.toDateString(),
+        endDate: endDate.toDateString(),
+        totalPrice,
+      };
 
       const updatedBookings = [...parsedBookings, booking];
 
       await AsyncStorage.setItem('@bookings', JSON.stringify(updatedBookings));
 
-      Alert.alert("Booking Confirmed", `Your booking for ${car.model} has been saved!`);
+      Alert.alert("Booking Confirmed", `Your booking for ${car.model} has been saved with ID: ${nextBookingID}!`);
     } catch (error) {
       console.error("Error saving booking:", error);
       Alert.alert("Error", "There was an issue saving your booking. Please try again.");

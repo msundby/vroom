@@ -18,7 +18,7 @@ const LoginComponent: React.FC = () => {
 
   const storeTestUser = async () => {
     const testUser = {
-      id: 1,
+      id: 0,
       name: 'lasse',
       address: '123 Main St',
       password: '1234',
