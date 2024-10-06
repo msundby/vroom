@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp, useRoute, RouteProp } from '@react-navigation/native';
 import { Car } from '../interfaces/Car';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -53,7 +53,10 @@ const CarInformation: React.FC = () => {
                 Availability: {car.available ? 'Available' : 'Not Available'}
           </Text>
           <Text style={styles.description}>Description: {car.description}</Text>
-          <Button title="Book Now" onPress={handleBookNow} />
+          <TouchableOpacity style={styles.bookingButton}>
+            <Button  title="Book Now" onPress={handleBookNow} />
+          </TouchableOpacity>
+          
         </View>
 
     );
@@ -79,6 +82,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 20,
       color: '#b8860b',
+      marginTop: 20,
     },
     label: {
       fontSize: 18,
@@ -90,6 +94,10 @@ const styles = StyleSheet.create({
       marginTop: 20,
       color: 'white',
     },
+    bookingButton: {
+      marginTop: 20,
+      width: '100%',
+    }
   });
   
   export default CarInformation;
