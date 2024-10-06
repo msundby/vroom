@@ -3,13 +3,10 @@ import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'rea
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import CarCard from '../components/CarCard';
 import { Car } from '../interfaces/Car';
+import { RootStackParamList } from '../navigation/types';
 
-type RootStackParamList = {
-    CarInformation: { car: Car };
-};  
-type CarsCollectionNavigationProp = NavigationProp<RootStackParamList, 'CarInformation'>;
 const CarsCollection: React.FC = () => {
-    const navigation = useNavigation<CarsCollectionNavigationProp>();
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
     const handleViewDetails = (car: Car) => {   
         navigation.navigate('CarInformation', { car });
     }
