@@ -1,21 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { Car } from '../interfaces/Car';
 import { RouteProp } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Button from '../components/Button';
 
 // Define the pparameter list type for your stack
 type RootStackParamList = {
     CarInformation: { car: Car };
 };
-type CarInformationRouteProp = RouteProp<RootStackParamList, 'CarInformation'>;
+type CarInformationRouteProp = NavigationProp<RootStackParamList, 'CarInformation'>;
 
 interface CarInformationProps {
   route: CarInformationRouteProp
 };
 
 const CarInformation: React.FC = () => {
-  const route = useRoute<RouteProp<RootStackParamList, 'CarInformation'>>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList, 'CarInformation'>>();
+  const handleBookNow = async () => {
+    try {
+    const userData = await AsyncStorage.getItem('@logged_user');
+    if (userData) {
+        navigation.navigate('Booking', { car });
+    } else {
+        navigation.navigate('Login', { redirectTo: 'Booking', car: Props.car });
+    }
+    } catch (error) {
+    console.error('Error checking login status:', error);
+    }
+};
   const { car } = route.params;
     return (
         <View style={styles.container}>
@@ -29,7 +43,9 @@ const CarInformation: React.FC = () => {
                 Availability: {car.available ? 'Available' : 'Not Available'}
           </Text>
           <Text style={styles.description}>Description: {car.description}</Text>
+          <Button title="Book Now" onPress={handleBookNow} />
         </View>
+
     );
        
 };
