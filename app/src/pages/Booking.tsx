@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Platform, ScrollView, StatusBar, Modal, Alert } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp, RouteProp, useRoute } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/types';
 
 type BookingRouteProp = RouteProp<RootStackParamList, 'Booking'>;
@@ -214,7 +213,7 @@ export default Booking;
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#2c2e34',
+    backgroundColor: '#2c2c2e',
     paddingTop: StatusBar.currentHeight,
   },
   scrollContainer: {
@@ -223,7 +222,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
-    backgroundColor: '#2c2e34',
+    backgroundColor: '#2c2c2e',
     justifyContent: 'flex-start',
   },
   heading: {
@@ -276,7 +275,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     position: 'absolute',
-    backgroundColor: '#2c2e34',
+    backgroundColor: '#2c2c2e',
     borderWidth: 2,
     borderColor: '#b8860b',
     borderRadius: 10,
@@ -284,7 +283,7 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   modalContent: {
-    backgroundColor: '#2c2e34',
+    backgroundColor: '#2c2c2e',
     borderRadius: 10,
     padding: 10,
     alignItems: 'center',
@@ -303,7 +302,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   modalButtonText: {
-    color: '#2c2e34',
+    color: '#2c2c2e',
     fontSize: 16,
     fontWeight: 'bold',
   },

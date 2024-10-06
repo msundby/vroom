@@ -9,6 +9,7 @@ import NavBar from './src/components/NavBar';
 import Profile from './src/pages/Profile'
 import Booking from './src/pages/Booking';
 import { RootStackParamList } from './src/navigation/types';
+import MyBookings from './src/pages/MyBookings';
 
 const Stack = createStackNavigator<RootStackParamList>();
 const clear = AsyncStorage.clear();
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           <Stack.Screen name="Login" component={LoginComponent} options={{ headerShown: false }} />
           <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
           <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} />
+          <Stack.Screen name="MyBookings" component={MyBookings} options={{ headerShown: false }} />
         </Stack.Navigator>
       <NavBar />
     </NavigationContainer>
