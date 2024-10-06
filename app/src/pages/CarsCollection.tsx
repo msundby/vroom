@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import CarCard from '../components/CarCard';
-import { Car } from '../components/Car';
+import { Car } from '../interfaces/Car';
 
 type RootStackParamList = {
     CarInformation: { car: Car };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Car } from '../components/Car';
+import { Car } from '../interfaces/Car';
 import { RouteProp } from '@react-navigation/native';
 
 // Define the pparameter list type for your stack

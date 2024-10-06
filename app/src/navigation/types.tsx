@@ -1,4 +1,4 @@
-import { Car } from '../pages/CarsCollection';
+import { Car } from '../interfaces/Car';
 
 export type RootStackParamList = {
   CarsCollection: undefined;
@@ -7,4 +7,5 @@ export type RootStackParamList = {
   Register: undefined;
   Booking: { car: Car };
   MyBookings: undefined;
+  CarInformation: { car: Car } | undefined; 
 };
