@@ -131,14 +131,14 @@ const Register: React.FC = () => {
           placeholder="Driver License Number"
           style={styles.input}
           placeholderTextColor="white"
-          value={user.driverLicenseNumber}
+          value={user.driverLicenseNumber.toString()}
           onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, driverLicenseNumber: text }))}
         />
         <TextInput
           placeholder="Phone Number"
           style={styles.input}
           placeholderTextColor="white"
-          value={user.phoneNumber}
+          value={user.phoneNumber.toString()}
           onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, phoneNumber: text }))}
         />     
         <View style={styles.button}>
