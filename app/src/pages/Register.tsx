@@ -4,9 +4,12 @@ import Button from '../components/Button';
 import * as ImagePicker from 'expo-image-picker';
 import { TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRoute, RouteProp, useNavigation, NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/types';
 
 
 const Register: React.FC = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const [user, setUser] = useState({
     id: '', 
@@ -22,6 +25,7 @@ const Register: React.FC = () => {
 
   const [profileImg, setProfileImg] = useState<string | null>(null);
   const [driversLicenseImg, setDriversLicenseImg] = useState<string | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   if(user == null){
 
@@ -145,6 +149,12 @@ const Register: React.FC = () => {
           </View>
         </View>
 
+        {showSuccessMessage && (
+        <View style={styles.successMessageBox}>
+          <Text style={styles.successMessageText}>User created successfully!</Text>
+        </View>
+      )}
+
         <View style={styles.button}>
         <Button
           title="Register"
@@ -159,13 +169,18 @@ const Register: React.FC = () => {
               parseInt(user.phoneNumber), 
               user.profileImagePath, 
               user.driverLicenseImage);
+
+              setShowSuccessMessage(true);
+
+              setTimeout(()=>{
+                  navigation.navigate('Login')
+                  
+              
+              }, 1000)
       }} />
-      </View>
-      
-      </View>
-      
-      
-    </ScrollView>
+    </View>
+  </View>
+</ScrollView>
   );
 };
 
@@ -188,6 +203,16 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     padding: '2%'
+  },
+  successMessageBox: {
+    backgroundColor: 'green',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  successMessageText: {
+    color: 'white',
+    textAlign: 'center'
   },
   addPhoto: {
     width: 100, 
