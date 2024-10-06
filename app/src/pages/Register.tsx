@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Image, ScrollView, Alert } from 'react-native';
 import Button from '../components/Button';
 import * as ImagePicker from 'expo-image-picker';
@@ -8,13 +8,44 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Register: React.FC = () => {
 
-  const [user, setUser] = useState({ name: '', address: '', password: '', email: '', driverLicenseNumber: '', phoneNumber: '', profileImagePath: '', licenseImagePath: ''});
+  const [user, setUser] = useState({
+    id: '', 
+    name: '', 
+    address: '', 
+    password: '', 
+    email: '', 
+    driverLicenseNumber: '', 
+    phoneNumber: '', 
+    profileImagePath: '', 
+    driverLicenseImage: ''
+  });
+
   const [profileImg, setProfileImg] = useState<string | null>(null);
   const [driversLicenseImg, setDriversLicenseImg] = useState<string | null>(null);
 
   if(user == null){
 
   }
+
+  const storeUser = async (id: number, name: string, address: string, password: string, email: string, driverLicenseNumber: number, phoneNumber:number, profileImagePath: string, driverLicenseImage: string ) => {
+    const user = {
+      id: id,
+      name: name,
+      address: address,
+      password: password,
+      email: email,
+      driverLicenseNumber: driverLicenseNumber,
+      phoneNumber: phoneNumber,
+      profileImagePath: profileImagePath,
+      driverLicenseImage: driverLicenseImage
+    };
+    try {
+      await AsyncStorage.setItem('@user', JSON.stringify(user));
+      console.log('Test user stored successfully');
+    } catch (error) {
+      console.error('Error storing test user:', error);
+    }
+  };
 
   const pickProfileImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -40,16 +71,7 @@ const Register: React.FC = () => {
 
     if (!result.canceled) {
       setDriversLicenseImg(result.assets[0].uri);
-      setUser((prevUser) => ({ ...prevUser, licenseImagePath: result.assets[0].uri }));
-    }
-  };
-
-  const saveUser = async (user: any) => {
-    try {
-      await AsyncStorage.setItem('@user', JSON.stringify(user));
-      Alert.alert('Success', 'User saved successfully!');
-    } catch (error) {
-      console.error('Error saving user:', error);
+      setUser((prevUser) => ({ ...prevUser, driverLicenseImage: result.assets[0].uri }));
     }
   };
 
@@ -88,18 +110,18 @@ const Register: React.FC = () => {
           onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, address: text }))}
         />
         <TextInput
+          placeholder="Password"
+          style={styles.input}
+          placeholderTextColor="white"
+          value={user.password}
+          onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, password: text }))}
+        />
+        <TextInput
           placeholder="Email"
           style={styles.input}
           placeholderTextColor="white"
           value={user.email}
           onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, email: text }))}
-        />
-        <TextInput
-          placeholder="Phone Number"
-          style={styles.input}
-          placeholderTextColor="white"
-          value={user.phoneNumber}
-          onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, phoneNumber: text }))}
         />
         <TextInput
           placeholder="Driver License Number"
@@ -108,8 +130,13 @@ const Register: React.FC = () => {
           value={user.driverLicenseNumber}
           onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, driverLicenseNumber: text }))}
         />
-        
-        
+        <TextInput
+          placeholder="Phone Number"
+          style={styles.input}
+          placeholderTextColor="white"
+          value={user.phoneNumber}
+          onChangeText={(text) => setUser((prevUser) => ({ ...prevUser, phoneNumber: text }))}
+        />     
         <View style={styles.button}>
         
         <Button title="Upload Driver's License" onPress={pickDriversLicenseImage} />
@@ -122,7 +149,16 @@ const Register: React.FC = () => {
         <Button
           title="Register"
           onPress={() => {
-            console.log(user)
+            storeUser(
+              1, 
+              user.name, 
+              user.address, 
+              user.password, 
+              user.email, 
+              parseInt(user.driverLicenseNumber), 
+              parseInt(user.phoneNumber), 
+              user.profileImagePath, 
+              user.driverLicenseImage);
       }} />
       </View>
       

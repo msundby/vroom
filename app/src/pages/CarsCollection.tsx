@@ -72,5 +72,6 @@ const styles = StyleSheet.create({
         width: '100%',
         gap: 10,
         paddingTop: 12,
+        paddingBottom: 68,
     }
 });

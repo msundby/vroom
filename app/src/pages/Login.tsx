@@ -14,31 +14,7 @@ const LoginComponent: React.FC = () => {
 
   const route = useRoute<LoginRouteProp>();
   const { redirectTo, car } = route.params || {};
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-
-  const storeTestUser = async () => {
-    const testUser = {
-      id: 0,
-      name: 'lasse',
-      address: '123 Main St',
-      password: '1234',
-      email: 'john.doe@example.com',
-      driverLicenseNumber: 123456,
-      phoneNumber: 9876543210,
-      profileImagePath: null
-    };
-    try {
-      await AsyncStorage.setItem('@user', JSON.stringify(testUser));
-      console.log('Test user stored successfully');
-    } catch (error) {
-      console.error('Error storing test user:', error);
-    }
-  };
-
-  useEffect(() => {
-    storeTestUser();
-  }, []);
-  
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();  
 
   useEffect(() => {
     const fetchUser = async () => {

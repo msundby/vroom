@@ -10,6 +10,7 @@ import Profile from './src/pages/Profile'
 import CarInformation from './src/pages/CarInformation';
 import Booking from './src/pages/Booking';
 import { RootStackParamList } from './src/navigation/types';
+import MyBookings from './src/pages/MyBookings';
 
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -25,6 +26,7 @@ const App: React.FC = () => {
         <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
         <Stack.Screen name="CarInformation" component={CarInformation} options={{ headerShown: false }} /> 
         <Stack.Screen name="Booking" component={Booking} options={{ headerShown: false }} /> 
+        <Stack.Screen name="MyBookings" component={MyBookings} options={{ headerShown: false }} />
       </Stack.Navigator>
       <NavBar />
     </NavigationContainer>
