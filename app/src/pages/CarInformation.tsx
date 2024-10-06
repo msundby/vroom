@@ -1,36 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp, useRoute, RouteProp } from '@react-navigation/native';
 import { Car } from '../interfaces/Car';
-import { RouteProp } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Button from '../components/Button';
+import { RootStackParamList } from '../navigation/types';
 
 // Define the pparameter list type for your stack
-type RootStackParamList = {
-    CarInformation: { car: Car };
-};
-type CarInformationRouteProp = NavigationProp<RootStackParamList, 'CarInformation'>;
-
-interface CarInformationProps {
-  route: CarInformationRouteProp
-};
+type BookingRouteProp = RouteProp<RootStackParamList, 'CarInformation'>;
 
 const CarInformation: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList, 'CarInformation'>>();
+  const route = useRoute<BookingRouteProp>();
+  const { params } = route;
   const handleBookNow = async () => {
     try {
     const userData = await AsyncStorage.getItem('@logged_user');
     if (userData) {
-        navigation.navigate('Booking', { car });
+        if (params?.car) {
+            navigation.navigate('Booking', { car: params.car });
+        } else {
+            console.error('Car information is missing');
+        }
     } else {
-        navigation.navigate('Login', { redirectTo: 'Booking', car: Props.car });
+        navigation.navigate('Login', { redirectTo: 'Booking', car: params?.car });
     }
     } catch (error) {
     console.error('Error checking login status:', error);
     }
 };
-  const { car } = route.params;
+  
+  if (!params || !params.car) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.title}>No car information found</Text>
+      </View>
+    );
+  }
+
+  const { car } = params;
+
+
     return (
         <View style={styles.container}>
           <Text style={styles.title}>Car Information</Text>
