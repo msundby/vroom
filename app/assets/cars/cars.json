@@ -48,5 +48,106 @@
         "available": true,
         "description": "The Lexus LS 500 is a top-tier luxury sedan known for its exceptional reliability and elegant design. Featuring a twin-turbo V6 engine, spacious interior, and an array of advanced technology features, it delivers a premium experience.",
         "image": "https://vehicle-images.dealerinspire.com/71a5-110004196/JTHG5LGF1P5011726/e50f0604593e347ef4d550c79262d999.jpg"
+    },
+    
+    {
+        "id": 5,
+        "make": "Rolls-Royce",
+        "model": "Phantom",
+        "year": 2024,
+        "price": 2500,
+        "available": true,
+        "description": "The 2024 Rolls-Royce Phantom epitomizes ultimate luxury, offering a hand-crafted interior, a powerful V12 engine, and unparalleled comfort. This car is the pinnacle of status and refinement.",
+        "image": "https://res.cloudinary.com/motortrak/t_base_vehicle_transformation/ims2/vehicle-media/undefined/lnegy4z6fiyklaj2mjk4"
+    },
+    {
+        "id": 6,
+        "make": "Bentley",
+        "model": "Flying Spur",
+        "year": 2024,
+        "price": 1200,
+        "available": true,
+        "description": "The 2024 Bentley Flying Spur offers a unique blend of luxury, craftsmanship, and performance. With its twin-turbo W12 engine and opulent interior, the Flying Spur is both powerful and refined.",
+        "image": "https://vehicle-photos-published.vauto.com/c1/c5/00/78-a661-4a92-8b51-3f56f4f0daa2/image-1.jpg"
+    },
+    {
+        "id": 7,
+        "make": "Lamborghini",
+        "model": "Urus",
+        "year": 2024,
+        "price": 1000,
+        "available": true,
+        "description": "The 2024 Lamborghini Urus is a high-performance luxury SUV that combines speed, power, and luxury. Equipped with a twin-turbo V8 engine, it delivers supercar performance in an SUV package.",
+        "image": "https://img.tipcars.com/fotky_zdrojove/20730021_1/0/lamborghini-urus-s-2024"
+    },
+    {
+        "id": 8,
+        "make": "Maserati",
+        "model": "Quattroporte",
+        "year": 2024,
+        "price": 750,
+        "available": true,
+        "description": "The 2024 Maserati Quattroporte blends Italian craftsmanship with high-end performance. Powered by a twin-turbo V8 engine, it offers a luxurious driving experience with sporty handling.",
+        "image": "https://d2ivfcfbdvj3sm.cloudfront.net/7fc965ab77efe6e0fa62e4ca1ea7673bb25e4853031e3d8e88cb10/stills_0640_png/MY2021/14928/14928_st0640_116.png"
+    },
+    {
+        "id": 9,
+        "make": "Tesla",
+        "model": "Model S Plaid",
+        "year": 2024,
+        "price": 800,
+        "available": true,
+        "description": "The 2024 Tesla Model S Plaid is a cutting-edge electric luxury sedan with unparalleled acceleration. With a futuristic interior and advanced tech, it's both sustainable and high-performance.",
+        "image": "https://media.ed.edmunds-media.com/tesla/model-s/2024/oem/2024_tesla_model-s_sedan_plaid_fq_oem_1_1600.jpg"
+    },
+    {
+        "id": 10,
+        "make": "Jaguar",
+        "model": "XJ",
+        "year": 2024,
+        "price": 650,
+        "available": true,
+        "description": "The 2024 Jaguar XJ delivers sophisticated luxury with British style. This full-size sedan offers a powerful engine lineup and a high level of comfort and refinement.",
+        "image": "https://ymimg1.b8cdn.com/resized/car_model/9808/pictures/11054812/mobile_listing_main_01.jpg"
+    },
+    {
+        "id": 11,
+        "make": "Aston Martin",
+        "model": "DB11",
+        "year": 2024,
+        "price": 1200,
+        "available": true,
+        "description": "The 2024 Aston Martin DB11 combines breathtaking design with exceptional performance. Featuring a twin-turbo V12 engine, this grand tourer offers both power and elegance.",
+        "image": "https://vehicle-images.dealerinspire.com/74fe-110007084/SCFRMFFWXRGL14335/8bad98060595f574ade895c40f1c63f7.jpg"
+    },
+    {
+        "id": 12,
+        "make": "Ferrari",
+        "model": "Roma",
+        "year": 2024,
+        "price": 1800,
+        "available": true,
+        "description": "The 2024 Ferrari Roma embodies timeless elegance and exhilarating performance. Its turbocharged V8 engine and sleek design make it a standout in the luxury sports car segment.",
+        "image": "https://images.dealer.com/ddc/vehicles/2024/Ferrari/Roma%20Spider/Convertible/color/Argento%20Nurburgring%20Metallic-ARG-207,208,207-640-en_US.jpg"
+    },
+    {
+        "id": 13,
+        "make": "McLaren",
+        "model": "GT",
+        "year": 2024,
+        "price": 1600,
+        "available": true,
+        "description": "The 2024 McLaren GT combines supercar performance with grand touring comfort. Featuring a twin-turbo V8 engine, the GT offers both thrilling speed and luxurious refinement.",
+        "image": "https://images.dealer.com/ddc/vehicles/2023/McLaren/GT/Coupe/still/front-left/front-left-640-en_US.jpg"
+    },
+    {
+        "id": 14,
+        "make": "Genesis",
+        "model": "G90",
+        "year": 2024,
+        "price": 600,
+        "available": true,
+        "description": "The 2024 Genesis G90 is a full-size luxury sedan that delivers exceptional comfort and advanced technology. It offers a serene driving experience and comes with a powerful V6 engine.",
+        "image": "https://vehicle-images.dealerinspire.com/2c77-110005802/KMTFC4SD3RU038810/af7ae07d14e37f275de086268da9b4b1.jpg"
     }
 ]
