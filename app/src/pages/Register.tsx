@@ -99,7 +99,7 @@ const Register: React.FC = () => {
 
       <View style={styles.form}>
         <TextInput
-          placeholder="Full name"
+          placeholder="Username"
           style={styles.input}
           placeholderTextColor="white"
           value={user.name}

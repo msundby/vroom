@@ -29,7 +29,23 @@ const LoginComponent: React.FC = () => {
     };
 
     fetchUser();
+    
   }, []);
+
+  navigation.addListener('focus', () => {
+    const fetchUser = async () => {
+      try {
+        const userData = await AsyncStorage.getItem('@user');
+        if (userData) {
+          setStoredUser(JSON.parse(userData));
+        }
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    }; 
+    
+    fetchUser();
+  });
 
   const handleLogin = async () => {
     if (storedUser) {
