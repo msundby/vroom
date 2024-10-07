@@ -84,7 +84,7 @@ const LoginComponent: React.FC = () => {
             onChangeText={(text) => setPassword(text)}
           />
           <TouchableOpacity style={styles.forgotPassword} onPress={() => {
-              Alert.alert('Holdkæft hvor er du dum at glemme dit password!')
+              Alert.alert('Womp Womp, too bad. Create a new account')
           }}>
             <Text style={styles.loginLink}>Forgot password</Text>
           </TouchableOpacity>
