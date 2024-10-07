@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import { useRoute, RouteProp, useNavigation, NavigationProp } from '@react-navigation/native';
-import CarCard from '../components/CarCard';
 import { RootStackParamList } from '../navigation/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -23,14 +22,20 @@ const MyBookings: React.FC = () => {
     useEffect(() => {
         const fetchBookings = async () => {
             try {
-                const storedBookings = await AsyncStorage.getItem('@bookings')
-                if (storedBookings) {
-                    setBookings(JSON.parse(storedBookings));
+                const storedBookings = await AsyncStorage.getItem('@bookings');
+                const loggedUser = await AsyncStorage.getItem('@logged_user');
+                if (storedBookings && loggedUser) {
+                    const bookingsArray: Booking[] = JSON.parse(storedBookings);
+                    const loggedUserObject = JSON.parse(loggedUser);
+                    const userBookings = bookingsArray.filter(
+                        (booking) => booking.customerID === loggedUserObject.id
+                    );
+                    setBookings(userBookings);
                 }
             } catch (error) {
-                console.error(error)
-            } 
-        }
+                console.error(error);
+            }
+        };
 
         fetchBookings();
     }, []);
@@ -51,13 +56,12 @@ const MyBookings: React.FC = () => {
                         ))
                     ) : (
                         <Text style={styles.noBookingsText}>You have no bookings</Text>
-                    )
-                    }
+                    )}
                 </View>
             </ScrollView>
         </SafeAreaView>
     );
-}
+};
 
 export default MyBookings;
 
@@ -114,5 +118,4 @@ const styles = StyleSheet.create({
         color: 'white',
         marginTop: 20
     }
-
-})
+});
